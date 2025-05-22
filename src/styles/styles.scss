@@ -1,0 +1,12 @@
+@import url('../../node_modules/normalize.css/normalize.css');
+@import url('fonts.scss');
+@import url('colors.scss');
+
+button {
+  border: solid 1px white;
+}
+
+input {
+  border-bottom: solid 1px var(--cursor-color);
+  color: var(--input-color);
+}

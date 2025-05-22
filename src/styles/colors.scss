@@ -1,0 +1,14 @@
+:root {
+  --background-color: rgb(23, 23, 23);
+  --text-color : white;
+  --input-color: black;
+  --typing-text-color: rgb(90, 90, 90);
+  --whitespace-border-color: rgb(90, 90, 90, 0.4);
+  --incorrect-background-color: hsla(1, 90%, 60%, 0.4);
+  --typing-overlay-color: transparent;
+  --correct-text-color: blue;
+  --correct-text-background-color: hsla(230, 50%, 40%, 0.2);
+  --incorrect-text-color: red;
+  --incorrect-text-background-color: hsla(1, 50%, 40%, 0.2);
+  --cursor-color: yellow;
+}

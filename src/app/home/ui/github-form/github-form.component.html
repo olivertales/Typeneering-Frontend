@@ -1,0 +1,19 @@
+<form #form="ngForm" ngNativeValidate (ngSubmit)="createRoute(form)">
+  <label>
+    Dono do repositório
+    <input type="text" ngModel name="owner" required />
+  </label>
+  <label>
+    Repositório
+    <input type="text" ngModel name="repository" required />
+  </label>
+  <label>
+    Caminho do arquivo
+    <input type="text" ngModel name="filePath" required />
+  </label>
+  <label>
+    Branch
+    <input type="text" ngModel name="branch" />
+  </label>
+  <button type="submit">Api Github</button>
+</form>

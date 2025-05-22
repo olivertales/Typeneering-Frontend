@@ -1,0 +1,18 @@
+<section>
+  <details>
+    <summary>GitHub file</summary>
+    <github-form (route)="githubButtonClick($event)"></github-form>
+  </details>
+  <button>
+    <label for="file-input">Folder File</label>
+  </button>
+  <input
+    hidden
+    type="file"
+    accept="text/*, .txt, .go, .cs, .js, .ts, .rs, .c, .h, .md, .zig, .rb, .java, .doc, .docx, .xml, .html, .css, .scss"
+    id="file-input"
+    (input)="filePick($event)"
+  />
+</section>
+<button>Start</button>
+<typingbox #typingBox [text]="text()" (gameDataEmitter)="gameAnalysis($event)"></typingbox>

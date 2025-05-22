@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+header {
+  height: 10%;
+}
+
+main {
+  height: 80%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+footer {
+  height: 10%;
+  nav {
+    height: 100%;
+    ul {
+      height: 100%;
+      list-style: none;
+      display: flex;
+      gap: 4em;
+      justify-content: center;
+      align-items: flex-end;
+
+      .active {
+        text-emphasis: double-circle;
+      }
+    }
+  }
+}

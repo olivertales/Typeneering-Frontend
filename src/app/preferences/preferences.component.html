@@ -1,0 +1,58 @@
+<details>
+  <summary>Color preferences</summary>
+  <details>
+    <summary>
+      textbox color
+    </summary>
+    <input type="text" [value]="textColor" disabled>
+    <color-sketch (onChangeComplete)="changeTextColor($event)"></color-sketch>
+  </details>
+</details>
+<details>
+  <summary>Font preferences</summary>
+  <label>
+    font - custom or from google
+    <delayed-input (inputChangeEmitter)="changeFontFamily($event)"></delayed-input>
+  </label>
+  <label>
+    font size
+    <input type="text" (keyup)="changeFontSize($event)" />
+  </label>
+  font weight
+  <label>
+    Light
+    <input
+      type="radio"
+      name="weight"
+      value="lighter"
+      (change)="changeFontWeight($event)"
+    />
+  </label>
+  <label>
+    Normal
+    <input
+      type="radio"
+      name="weight"
+      value="normal"
+      (change)="changeFontWeight($event)"
+    />
+  </label>
+  <label>
+    Bold
+    <input
+      type="radio"
+      name="weight"
+      value="bold"
+      (change)="changeFontWeight($event)"
+    />
+  </label>
+  <label>
+    Heavy Bold
+    <input
+      type="radio"
+      name="weight"
+      value="bolder"
+      (change)="changeFontWeight($event)"
+    />
+  </label>
+</details>

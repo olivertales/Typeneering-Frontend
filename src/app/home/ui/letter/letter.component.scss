@@ -1,0 +1,28 @@
+:host {
+  color: var(--typing-text-color);
+  display: block;
+  height: var(--typing-font-size);
+  border-radius: 15%;
+  background: transparent;
+
+  &.correct {
+    color: var(--correct-text-color);
+    background: var(--correct-text-background-color);
+  }
+
+  &.whitespace:not(.incorrect) {
+    border-bottom: solid 1px var(--whitespace-border-color);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.incorrect {
+    color: var(--incorrect-text-color);
+    background: var(--incorrect-text-background-color);
+
+    &.whitespace {
+      background: var(--incorrect-background-color);
+    }
+  }
+
+}

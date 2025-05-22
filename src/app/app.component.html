@@ -1,0 +1,25 @@
+<header style="color: white">Typeneering</header>
+<main>
+  <router-outlet />
+</main>
+<footer style="color: white">
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" ariaCurrentWhenActive="page">Home</a>
+      </li>
+      <li>
+        <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Perfil</a>
+      </li>
+      <li>
+        <a routerLink="/leaderboard" routerLinkActive="active" ariaCurrentWhenActive="page">Leaderboard</a>
+      </li>
+      <li>
+        <a routerLink="/preferences" routerLinkActive="active" ariaCurrentWhenActive="page">Preferências</a>
+      </li>
+      <li>
+        <a routerLink="/privacy" routerLinkActive="active" ariaCurrentWhenActive="page">Privacidade</a>
+      </li>
+    </ul>
+  </nav>
+</footer>

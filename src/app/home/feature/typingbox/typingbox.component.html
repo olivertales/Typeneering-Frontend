@@ -1,0 +1,50 @@
+<div>
+  <label>
+    30
+    <input name="timer" value="30" type="radio" [(ngModel)]="timerSeconds" />
+  </label>
+  <label>
+    60
+    <input name="timer" type="radio" value ="60" [(ngModel)]="timerSeconds" />
+  </label>
+  <label>
+    10
+    <input name="timer" type="radio" value="10" [(ngModel)]="timerSeconds" />
+  </label>
+</div>
+<button (click)="startGame()">Start</button>
+<div class="content">
+  <div #textDisplay class="content text display hidden-scrolling">
+    @for (letter of text(); track $index) {
+      @if (letter === "\n") {
+        <span class="newline"></span>
+      } @else {
+        @let typedLetter = inputText[$index];
+        @let isInputCorrect = typedLetter === letter;
+        <letter
+          [class.correct]="isInputCorrect"
+          [class.incorrect]="typedLetter && !isInputCorrect"
+          [class.whitespace]="letter === ' '"
+          [letter]="letter"
+        ></letter>
+      }
+    }
+  </div>
+  <textarea
+    class="text hidden-scrolling"
+    [tabIndex]="active ? 1 : -1"
+    [class.blurred]="!active"
+    (mousedown)="(false)"
+    (scroll)="textScroll($event)"
+    (keydown)="keyCheck($event)"
+    (focus)="textFocus($event)"
+    (click)="textFocus($event)"
+    spellcheck="false"
+  ></textarea>
+</div>
+
+<div class="game-data">
+  <span style="color: white"> Correct characters {{ correctInputChars }} </span>
+  <span style="color: white"> Correct words {{ correctWords() }} </span>
+  <span style="color: white"> Total characters {{ inputChars }} </span>
+</div>
