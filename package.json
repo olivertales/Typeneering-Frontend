@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "prepare": "husky",
-    "serve:ssr:Typeneering.Front": "node dist/typeneering.front/server/server.mjs"
+    "serve:ssr:Typeneering.Frontend": "node dist/typeneering.front/server/server.mjs"
   },
   "private": true,
   "dependencies": {
