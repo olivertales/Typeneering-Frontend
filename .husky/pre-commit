@@ -1,2 +1,2 @@
-prettier --write
+bun run prettier . --write
 ng lint
