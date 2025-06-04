@@ -1,1 +1,66 @@
-<p>login works!</p>
+<section>
+  <form #form="ngForm" (ngSubmit)="formSubmit()" autocomplete>
+    <label>
+      Username
+      <input
+        type="text"
+        maxLength="50"
+        [(ngModel)]="accountForm.login"
+        name="login"
+        required
+      />
+    </label>
+    <label>
+      Email
+      <input
+        type="email"
+        [(ngModel)]="accountForm.email"
+        [required]="isRegister"
+        title="Invalid email"
+        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+        name="email"
+        [hidden]="!isRegister"
+      />
+    </label>
+    <label>
+      Password
+      <input
+        type="password"
+        [(ngModel)]="accountForm.password"
+        required
+        name="password"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}"
+        minLength="8"
+      />
+    </label>
+    <label>
+      Nickname
+      <input
+        type="text"
+        name="nickname"
+        maxLength="50"
+        [(ngModel)]="accountForm.nickname"
+        [hidden]="!isRegister"
+        placeholder="Leave empty if you wish to user your login as the nickname."
+      />
+    </label>
+    <button
+      type="submit"
+      [disabled]="!form.valid"
+      [hidden]="isRegister"
+      name="btn-login"
+    >
+      Login
+    </button>
+    <button
+      type="submit"
+      [disabled]="!form.valid"
+      [hidden]="!isRegister"
+      name="btn-register"
+    >
+      Register
+    </button>
+  </form>
+  <button type="button" (click)="registerToggle()">Register</button>
+  <span>{{ form.valid }}</span>
+</section>
