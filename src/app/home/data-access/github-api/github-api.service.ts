@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { request } from '@octokit/request'
 import type { OctokitResponse, RequestParameters } from '@octokit/types'
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class GithubApiService {
   private githubAuthToken = ''
   private githubRequest = request.defaults({
@@ -16,10 +15,13 @@ export class GithubApiService {
     method: 'Get'
   })
 
-  getContentRequest(url: string, options?: RequestParameters): Observable<OctokitResponse<string, number>> {
+  getContentRequest(
+    url: string,
+    options?: RequestParameters
+  ): Observable<OctokitResponse<string, number>> {
     return new Observable<OctokitResponse<string, number>>((observer) => {
       this.githubRequest(url, options)
-        .then(result => {
+        .then((result) => {
           observer.next(result)
           observer.complete()
         })
@@ -28,5 +30,4 @@ export class GithubApiService {
         })
     })
   }
-
 }

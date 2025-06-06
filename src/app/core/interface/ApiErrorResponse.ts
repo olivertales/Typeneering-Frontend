@@ -6,6 +6,6 @@ export class ApiErrorResponse {
     public Errors?: Map<string, string[]>,
     public Extensions?: Map<string, object | null>,
     public Status?: number,
-    public Instance?: string,
+    public Instance?: string
   ) {}
 }

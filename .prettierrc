@@ -1,1 +1,6 @@
-{}
+{
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true,
+  "bracketSameLine": true
+}

@@ -1,36 +1,36 @@
-import { Injectable } from '@angular/core';
-import { UserData } from '../interface/UserData';
-import { ApiFetchService } from './api-fetch.service';
-import { tap } from 'rxjs';
-import { AppSetupService } from './app-setup.service';
+import { Injectable } from '@angular/core'
+import { UserData } from '../interface/UserData'
+import { ApiFetchService } from './api-fetch.service'
+import { tap } from 'rxjs'
+import { AppSetupService } from './app-setup.service'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserDataService {
-  private user?: UserData;
+  private user?: UserData
 
   constructor(
     private apiFetch: ApiFetchService,
-    private appSetup: AppSetupService,
+    private appSetup: AppSetupService
   ) {}
 
   getUser() {
-    return this.user;
+    return this.user
   }
 
   changePreference(name: string, value: string) {
-    this.user?.userPreferences.set(name, value);
+    this.user?.userPreferences.set(name, value)
   }
 
   reloadUser() {
     return this.apiFetch.get<UserData>('user').pipe(
       tap({
         next: (user) => {
-          this.user = user;
-          this.appSetup.applyUserPreferences(user.userPreferences);
-        },
-      }),
-    );
+          this.user = user
+          this.appSetup.applyUserPreferences(user.userPreferences)
+        }
+      })
+    )
   }
 }

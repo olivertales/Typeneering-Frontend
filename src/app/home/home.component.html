@@ -11,8 +11,10 @@
     type="file"
     accept="text/*, .txt, .go, .cs, .js, .ts, .rs, .c, .h, .md, .zig, .rb, .java, .doc, .docx, .xml, .html, .css, .scss"
     id="file-input"
-    (input)="filePick($event)"
-  />
+    (input)="filePick($event)" />
 </section>
 <button>Start</button>
-<typingbox #typingBox [text]="text()" (gameDataEmitter)="gameAnalysis($event)"></typingbox>
+<typingbox
+  #typingBox
+  [text]="text()"
+  (gameDataEmitter)="gameAnalysis($event)"></typingbox>

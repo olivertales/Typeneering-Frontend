@@ -1,5 +1,17 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, input, OnDestroy, output } from '@angular/core';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  OnDestroy,
+  output
+} from '@angular/core'
+import {
+  BehaviorSubject,
+  debounceTime,
+  distinctUntilChanged,
+  Subscription
+} from 'rxjs'
 
 @Component({
   selector: 'delayed-input',
@@ -10,16 +22,14 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, Subscription } fro
 })
 export class DelayedInputComponent implements AfterViewInit, OnDestroy {
   inputChangeEmitter = output<string>()
-  value = input<string>("")
+  value = input('')
+  label = input('')
   private valueSub?: Subscription
-  private delayedSubject$ = new BehaviorSubject(this.value() || "")
+  private delayedSubject$ = new BehaviorSubject(this.value() || '')
 
   ngAfterViewInit() {
     this.valueSub = this.delayedSubject$
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged()
-      )
+      .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe({
         next: (value) => this.inputChangeEmitter.emit(value)
       })

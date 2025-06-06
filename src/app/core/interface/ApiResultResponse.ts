@@ -1,7 +1,7 @@
 export class ApiResultResponse {
   constructor(
     public title: string,
-    public message: string,
+    public message: string
   ) {}
 }
 
@@ -10,6 +10,6 @@ export class ApiResultResponseList<T> {
     public title: string,
     public message: string,
     public data: T[],
-    public totalCount: number,
+    public totalCount: number
   ) {}
 }

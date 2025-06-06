@@ -5,7 +5,7 @@
   </label>
   <label>
     60
-    <input name="timer" type="radio" value ="60" [(ngModel)]="timerSeconds" />
+    <input name="timer" type="radio" value="60" [(ngModel)]="timerSeconds" />
   </label>
   <label>
     10
@@ -16,7 +16,7 @@
 <div class="content">
   <div #textDisplay class="content text display hidden-scrolling">
     @for (letter of text(); track $index) {
-      @if (letter === "\n") {
+      @if (letter === '\n') {
         <span class="newline"></span>
       } @else {
         @let typedLetter = inputText[$index];
@@ -25,8 +25,7 @@
           [class.correct]="isInputCorrect"
           [class.incorrect]="typedLetter && !isInputCorrect"
           [class.whitespace]="letter === ' '"
-          [letter]="letter"
-        ></letter>
+          [letter]="letter"></letter>
       }
     }
   </div>
@@ -39,8 +38,7 @@
     (keydown)="keyCheck($event)"
     (focus)="textFocus($event)"
     (click)="textFocus($event)"
-    spellcheck="false"
-  ></textarea>
+    spellcheck="false"></textarea>
 </div>
 
 <div class="game-data">

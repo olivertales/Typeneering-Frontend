@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ColorEvent } from 'ngx-color';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { ColorEvent } from 'ngx-color'
 import { ColorSketchModule } from 'ngx-color/sketch'
-import { ColorUtils } from './utils/ColorUtils';
-import { DelayedInputComponent } from '../shared/ui/delayed-input/delayed-input.component';
+import { ColorUtils } from './utils/ColorUtils'
+import { DelayedInputComponent } from '../shared/ui/delayed-input/delayed-input.component'
 
 @Component({
   selector: 'app-preferences',

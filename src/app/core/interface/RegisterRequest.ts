@@ -1,6 +1,6 @@
 export interface RegisterRequest {
-  email: string | null;
-  nickname: string | null;
-  password: string;
-  username: string;
+  email: string | null
+  nickname: string | null
+  password: string
+  username: string
 }

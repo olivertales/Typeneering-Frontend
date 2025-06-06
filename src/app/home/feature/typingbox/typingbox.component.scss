@@ -28,7 +28,6 @@
 }
 
 .hidden-scrolling {
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -70,8 +69,8 @@ textarea {
 .newline {
   width: 100%;
 
-  +.newline {
-    height: var(--typing-font-size)
+  + .newline {
+    height: var(--typing-font-size);
   }
 }
 
