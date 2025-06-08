@@ -1,12 +1,14 @@
 import { DestroyRef, Injectable } from '@angular/core'
 import { JWTModel } from '../interface/JWTModel'
 import { HttpClient, HttpContext } from '@angular/common/http'
-import { tap } from 'rxjs'
 import { AUTHENTICATED_REQUEST } from '../application/authInterceptor'
+import { tap, throwError } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ApiResultResponse } from '../interface/ApiResultResponse'
 import { LoginRequest } from '../interface/LoginRequest'
 import { RegisterRequest } from '../interface/RegisterRequest'
+import { CookieError } from '../../shared/errors/CookieError'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class AuthService {
   private endpointUrl = `user`
   constructor(
     private http: HttpClient,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private router: Router
   ) {}
 
   login(body: LoginRequest) {
@@ -29,15 +32,13 @@ export class AuthService {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         tap({
-          next: (value) => {
+          next: (res) => {
             try {
-              this.setAuth(value)
-            } catch (error) {
-              alert(error)
+              this.setAuth(res)
+            } catch {
+              throwError(() => new CookieError())
             }
-            alert(value)
-          },
-          error: (err) => alert(err)
+          }
         })
       )
   }
@@ -47,17 +48,7 @@ export class AuthService {
       .post<ApiResultResponse>(`${this.endpointUrl}/register`, body, {
         context: new HttpContext().set(AUTHENTICATED_REQUEST, false)
       })
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        tap({
-          next: (val) => {
-            alert(val)
-          },
-          error: (err) => {
-            alert(err)
-          }
-        })
-      )
+      .pipe(takeUntilDestroyed(this.destroyRef))
   }
 
   refresh(jwtCookie: JWTModel) {
@@ -71,7 +62,11 @@ export class AuthService {
         takeUntilDestroyed(),
         tap({
           next: (res) => {
-            this.setAuth(res)
+            try {
+              this.setAuth(res)
+            } catch {
+              throwError(() => new CookieError())
+            }
           },
           error: () => this.logoff()
         })
@@ -79,7 +74,11 @@ export class AuthService {
   }
 
   logoff() {
-    return
+    localStorage.removeItem(this.accessTokenStr)
+    localStorage.removeItem(this.refreshTokenStr)
+    localStorage.removeItem(this.expireStr)
+
+    this.router.navigate([this.router.url])
   }
 
   getAuth() {
@@ -96,9 +95,9 @@ export class AuthService {
     )
   }
 
-  setAuth(jwt: JWTModel) {
-    localStorage.setItem('access_token', jwt.accessToken)
-    localStorage.setItem('refresh_token', jwt.refreshToken)
-    localStorage.setItem('expires_in', jwt.expiresIn.toString())
+  setAuth(jwt: JWTModel): void | never {
+    localStorage.setItem(this.accessTokenStr, jwt.accessToken)
+    localStorage.setItem(this.refreshTokenStr, jwt.refreshToken)
+    localStorage.setItem(this.expireStr, jwt.expiresIn.toString())
   }
 }

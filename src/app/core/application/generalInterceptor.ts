@@ -1,4 +1,8 @@
-import { HttpErrorResponse, HttpHandlerFn, HttpRequest } from '@angular/common/http'
+import {
+  HttpErrorResponse,
+  HttpHandlerFn,
+  HttpRequest
+} from '@angular/common/http'
 import { environment } from '../../../environments/environment.development'
 import { catchError, debounceTime, of, retry, throwError } from 'rxjs'
 import { ApiErrorResponse } from '../interface/ApiErrorResponse'
@@ -15,20 +19,21 @@ export function generalInterceptor(
     url: `${apiUrl}/${req.url}`
   })
 
-  return next(apiReq)
-    .pipe(
-      retry(defaultRetry),
-      debounceTime(defaultDebounce),
-      catchError((err: HttpErrorResponse) => {
-        if (err.error instanceof Error)
-          return of(new ApiErrorResponse(
+  return next(apiReq).pipe(
+    retry(defaultRetry),
+    debounceTime(defaultDebounce),
+    catchError((err: HttpErrorResponse) => {
+      if (err.error instanceof Error)
+        return of(
+          new ApiErrorResponse(
             err.status,
             undefined,
             err.type.toString(),
             err.message
-          ))
+          )
+        )
 
-        return throwError(() => err.error as ApiErrorResponse)
-      })
-    )
+      return throwError(() => err.error as ApiErrorResponse)
+    })
+  )
 }

@@ -19,4 +19,8 @@ export class AppSetupService {
         docStyle.setProperty(preference, localStorage.getItem(preference))
     }
   }
+
+  applyPreference(name: string, value: string) {
+    document.documentElement.style.setProperty(name, value)
+  }
 }

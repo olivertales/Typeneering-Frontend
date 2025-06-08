@@ -1,11 +1,11 @@
 export class ApiErrorResponse {
   constructor(
-    public Title: string,
-    public Type: string,
-    public Detail: string,
+    public Status: number,
+    public Title = 'Application request has failed',
+    public Type = 'GeneralAppRequest',
+    public Detail = 'The application has failed to make a request to the server, please try again',
     public Errors?: Map<string, string[]>,
     public Extensions?: Map<string, object | null>,
-    public Status?: number,
     public Instance?: string
   ) {}
 }

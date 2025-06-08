@@ -23,6 +23,12 @@ export class ApiFetchService {
       .pipe(takeUntilDestroyed(this.destroyRef))
   }
 
+  put<TReturn, TBody>(endpoint: string, body: TBody) {
+    return this.http
+      .put<TReturn>(`${endpoint}`, body)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+  }
+
   patch<TReturn, TBody>(endpoint: string, body: TBody, id?: number) {
     return this.http
       .patch<TReturn>(`${endpoint}/${id || ''}`, body)
