@@ -9,6 +9,7 @@ import { LoginRequest } from '../interface/LoginRequest'
 import { RegisterRequest } from '../interface/RegisterRequest'
 import { CookieError } from '../../shared/errors/CookieError'
 import { Router } from '@angular/router'
+import { UserDataService } from './user-data.service'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private destroyRef: DestroyRef,
-    private router: Router
+    private router: Router,
+    private user: UserDataService
   ) {}
 
   login(body: LoginRequest) {
@@ -77,7 +79,7 @@ export class AuthService {
     localStorage.removeItem(this.accessTokenStr)
     localStorage.removeItem(this.refreshTokenStr)
     localStorage.removeItem(this.expireStr)
-
+    this.user.logoffUser()
     this.router.navigate([this.router.url])
   }
 

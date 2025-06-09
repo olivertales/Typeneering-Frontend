@@ -3,12 +3,13 @@ import { UserData } from '../interface/UserData'
 import { ApiFetchService } from './api-fetch.service'
 import { tap } from 'rxjs'
 import { AppSetupService } from './app-setup.service'
+import { UserError } from '../../shared/errors/UserError'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
-  private user?: UserData
+  private user: UserData | null = null
 
   constructor(
     private apiFetch: ApiFetchService,
@@ -19,8 +20,10 @@ export class UserDataService {
     return this.user
   }
 
-  changePreference(name: string, value: string) {
-    this.user?.userPreferences.set(name, value)
+  changePreference(name: string, value: string): void | never {
+    if (!this.user) throw new UserError()
+
+    this.user.userPreferences.set(name, value)
   }
 
   reloadUser() {
@@ -32,5 +35,9 @@ export class UserDataService {
         }
       })
     )
+  }
+
+  logoffUser() {
+    this.user = null
   }
 }
