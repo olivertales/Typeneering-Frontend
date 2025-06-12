@@ -40,7 +40,7 @@ Amet magni nisi a modi blanditiis, quo quidem, repudiandae provident harum volup
     const reader = new FileReader()
     reader.onload = () => {
       if (reader.result)
-        this.text.set(reader.result.toString().replaceAll('\r', '\n'))
+        this.text.set(reader.result.toString().replaceAll('\r\n', '\n'))
     }
 
     reader.readAsText(file)
